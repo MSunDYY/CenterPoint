@@ -3,14 +3,17 @@ from pathlib import Path
 import pickle
 
 import fire, os
-
+if os.getcwd().endswith('tools'):
+    os.chdir('..')
+import sys
+sys.path.append(os.getcwd())
 from det3d.datasets.nuscenes import nusc_common as nu_ds
 from det3d.datasets.utils.create_gt_database import create_groundtruth_database
 from det3d.datasets.waymo import waymo_common as waymo_ds
 
 def nuscenes_data_prep(root_path, version, nsweeps=10, filter_zero=True, virtual=False):
     nu_ds.create_nuscenes_infos(root_path, version=version, nsweeps=nsweeps, filter_zero=filter_zero)
-    if version == 'v1.0-trainval':
+    if version == 'v1.0-trainval' or version =='v1.0-mini':
         create_groundtruth_database(
             "NUSC",
             root_path,
@@ -32,4 +35,4 @@ def waymo_data_prep(root_path, split, nsweeps=1):
     
 
 if __name__ == "__main__":
-    fire.Fire()
+    nuscenes_data_prep(root_path='../data/nuscenes/v1.0-trainval',version='v1.0-trainval')

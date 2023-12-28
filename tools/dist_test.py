@@ -3,6 +3,9 @@ import copy
 import json
 import os
 import sys
+if os.getcwd().endswith('tools'):
+    os.chdir('..')
+sys.path.insert(0,os.getcwd())
 
 try:
     import apex
@@ -36,10 +39,10 @@ def save_pred(pred, root):
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Train a detector")
-    parser.add_argument("config", help="train config file path")
-    parser.add_argument("--work_dir", required=True, help="the dir to save logs and models")
+    parser.add_argument("--config",default='configs/waymo/voxelnet/two_stage/waymo_centerpoint_voxelnet_two_sweep_two_stage_bev_5point_ft_6epoch_freeze_with_vel.py', help="train config file path")
+    parser.add_argument("--work_dir", required=False,default='work_dirs/waymo_centerpoint_voxelnet_two_sweep_two_stage_bev_5point_ft_6epoch_freeze_with_vel', help="the dir to save logs and models")
     parser.add_argument(
-        "--checkpoint", help="the dir to checkpoint which the model read from"
+        "--checkpoint",default='work_dirs/waymo_centerpoint_voxelnet_two_sweep_two_stage_bev_5point_ft_6epoch_freeze_with_vel/latest.pth', help="the dir to checkpoint which the model read from"
     )
     parser.add_argument(
         "--txt_result",

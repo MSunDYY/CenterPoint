@@ -1,0 +1,2 @@
+2023-12-14 22:53:22,934 - INFO - Start running, host: msun@msun, work_dir: /home/msun/pan1/pointcloud/CenterPoint/work_dirs/waymo_centerpoint_voxelnet_two_sweep_two_stage_bev_5point_ft_6epoch_freeze_with_vel
+2023-12-14 22:53:22,935 - INFO - workflow: [('train', 1)], max: 6 epochs

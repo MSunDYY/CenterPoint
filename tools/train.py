@@ -2,11 +2,13 @@ import argparse
 import json
 import os
 import sys
+sys.path.insert(0,os.getcwd())
 
 from numba.core.errors import NumbaDeprecationWarning, NumbaPendingDeprecationWarning, NumbaWarning
 import warnings
 warnings.simplefilter('ignore', category=NumbaDeprecationWarning)
 warnings.simplefilter('ignore', category=NumbaWarning)
+
 
 import numpy as np
 import torch

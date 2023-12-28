@@ -126,12 +126,12 @@ test_cfg = dict(
 # dataset settings
 dataset_type = "WaymoDataset"
 nsweeps = 2
-data_root = "data/Waymo"
+data_root = "data/waymo"
 
 db_sampler = dict(
     type="GT-AUG",
     enable=False,
-    db_info_path="data/Waymo/dbinfos_train_2sweeps_withvelo.pkl",
+    db_info_path="data/waymo/dbinfos_train_2sweeps_withvelo.pkl",
     sample_groups=[
         dict(VEHICLE=15),
         dict(PEDESTRIAN=10),
@@ -189,9 +189,9 @@ test_pipeline = [
     dict(type="Reformat"),
 ]
 
-train_anno = "data/Waymo/infos_train_02sweeps_filter_zero_gt.pkl"
-val_anno = "data/Waymo/infos_val_02sweeps_filter_zero_gt.pkl"
-test_anno = "data/Waymo/infos_test_02sweeps_filter_zero_gt.pkl"
+train_anno = "data/waymo/infos_train_02sweeps_filter_zero_gt.pkl"
+val_anno = "data/waymo/infos_val_02sweeps_filter_zero_gt.pkl"
+test_anno = "data/waymo/infos_test_02sweeps_filter_zero_gt.pkl"
 
 data = dict(
     samples_per_gpu=4,
@@ -214,6 +214,7 @@ data = dict(
         nsweeps=nsweeps,
         class_names=class_names,
         pipeline=test_pipeline,
+        load_interval = 1000
     ),
     test=dict(
         type=dataset_type,
